@@ -5,11 +5,13 @@ A simple web application that allows you to create a list of your favorite movie
 ## Tech Stack
 
 ### Frontend
+
 - HTML
 - CSS (SASS)
 - TypeScript (React.ts)
 
 ### Backend
+
 - Node.js (Nest.js)
 
 ## Getting Started
@@ -27,6 +29,7 @@ To run the app on your local machine, follow these steps:
 9. The app should now be running, and you can start adding your favorite movies to the list.
 
 **Note:**
+
 - Node.js is required to run this project. Ensure that you have Node.js installed on your machine before proceeding.
 - Make sure to keep the three terminal/command prompt windows open while running the app locally. If you encounter any issues, double-check that the necessary dependencies are installed and that the ports specified are not in use by other applications on your machine.
 
