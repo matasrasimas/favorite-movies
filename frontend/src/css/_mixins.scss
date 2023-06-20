@@ -1,0 +1,35 @@
+@mixin button-style($color) {
+    border-radius:20px;
+    width:120px;
+    height:50px;
+    font-weight:600;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 1px;
+    border: 3px solid $color;
+    background-color: lighten($color, 30%);
+    color: if(lightness($color) > 50, #000000, #ffffff);
+
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+@mixin flexbox-style($direction, $justify-content, $gap: 0) {
+    display:flex;
+    flex-direction: $direction;
+    justify-content: $justify-content;
+    gap: $gap;
+}
+
+@mixin header-style($color, $size) {
+        color:$color;
+        overflow:unset;
+        text-align:center;
+        font-family: "Roboto", sans-serif;
+        font-size: $size;
+        letter-spacing: 5px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        -webkit-text-stroke: 1px if(lightness($color) > 50, darken($color, 50%), ligthen($color, 50%));
+}

@@ -1,0 +1,29 @@
+
+.input-style {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: $input-border;
+    font-family: 'Sono', sans-serif;
+    font-weight:600;
+    border-radius: 25px;
+    background-color: $input-color;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.input-invalid {
+    border: 3px solid red;
+    background-color: $error-background-color;
+    animation: glowing 2s infinite;
+}
+
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+}

@@ -1,0 +1,90 @@
+@import 'variables';
+@import 'mixins';
+@import 'inputs';
+@import 'navbar';
+@import 'movies';
+@import 'form';
+@import 'modal';
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family: $primary-font;
+    font-size:16px;
+    line-height:1.5;
+}
+
+
+
+@keyframes pop-in {
+    from {
+        opacity:0;
+        transform: scale(0);
+    }
+    to {
+        opacity:1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop-out {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(0);
+    }
+  }
+
+@media(max-width:1200px) {
+    .main-movies-cnt-items {
+        width:$p-70;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:850px) {
+    .main-movies-cnt-items {
+        width:$p-60;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .modal-content-buttons {   
+        flex-direction:column;
+        align-items:center;
+        button {
+            width:$p-80 !important;
+        }
+    }
+
+}
+
+@media(max-width:550px) {
+    .form-cnt {
+        width:75% !important;
+    }
+    .go-back-cnt {
+        left: -$p-10 !important;
+        &-txt {
+            display:none;
+        }
+        &-icon {
+            font-size:1.2em;
+        }
+    }
+
+}
+
+@media(max-width:350px) {
+    .navbar-cnt {
+        justify-content:center;
+        &-user {
+            display:none;
+        }
+    }
+
+}

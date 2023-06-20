@@ -1,0 +1,84 @@
+.modal-container {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width:$p-100;
+    background-color:rgba(0, 0, 0, 0.5);
+    z-index:999;
+    @include flexbox-style(row, center);
+    align-items:center;
+
+    .modal-content {
+        @include flexbox-style(column, space-between);
+        align-items:center;
+        text-align:center;
+        border: 3px solid black;
+        background-color: #e4ebf7;
+        width: $p-60;
+        border-radius: 5px;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+        animation: pop-in 0.2s ease-out;
+
+        &.pop-out {
+            animation: pop-out 0.2s ease-out;
+        }
+
+        p {
+            font-size: 20px;
+            color: black;
+            font-family: "Roboto", sans-serif;
+            letter-spacing: 1px;
+            margin: 1.5em;
+        }
+
+        header {
+            @include flexbox-style(row, space-between);
+            padding: 10px;
+            padding-left: 25px;
+            padding-right: 25px;
+            align-items: center;
+            background-color: black;
+            width: $p-100;
+
+            p {
+                color: white;
+                overflow: hidden;
+                font-family: "Roboto", sans-serif;
+                letter-spacing: 2px;
+                margin: 0;
+            }
+
+            .x-icon {
+                color: white;
+                font-size: 20px;
+                cursor: pointer;
+            }
+        }
+
+        &-buttons {
+            display: flex;
+            width: $p-60;
+            justify-content: space-between;
+            padding-bottom: 20px;
+
+            button {
+                background-color: #e74c3c;
+                margin: 10px;
+                width: $p-40;
+                overflow: hidden;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                margin-left: 10px;
+                cursor: pointer;
+
+                &:first-child {
+                    background-color: #2ecc71;
+                }
+            }
+        }
+    }
+}
