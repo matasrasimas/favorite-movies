@@ -1,0 +1,33 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "name": "Skyfall",
+      "description": "Skyfall is a James Bond film where Agent 007 must confront a former MI6 agent who threatens to expose and destroy the intelligence agency while delving into Bond's past.",
+      "img_url": "https://upload.wikimedia.org/wikipedia/en/a/a7/Skyfall_poster.jpg",
+      "user_id": 1
+    },
+    {
+      "id": 2,
+      "name": "Joker",
+      "description": "Joker is a film that delves into the origin story of the iconic Batman villain, exploring the descent of a mentally unstable man named Arthur Fleck into madness and his transformation into the Joker.",
+      "img_url": "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/c58b4681277211.5cfa6e54a6d3d.jpg",
+      "user_id": 1
+    },
+    {
+      "id": 3,
+      "name": "Avengers: Endgame",
+      "description": "Avengers: Endgame is a film where the surviving members of the Avengers, along with their allies, embark on a mission to reverse the devastating effects of Thanos' snap and restore balance to the universe.",
+      "img_url": "https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg",
+      "user_id": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John",
+      "email": "john@gmail.com",
+      "password": "admin123"
+    }
+  ]
+}
