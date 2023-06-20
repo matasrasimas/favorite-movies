@@ -20,13 +20,15 @@ To run the app on your local machine, follow these steps:
 
 1. Clone the repository (download app) to your local machine.
 2. Open the terminal or command line, navigate to the 'backend' folder using the `cd` (change directory) command.
-3. Execute the following command: `npm run json-server`. This command will start the local database on port 5000. Keep this terminal/command prompt open.
-4. Open another terminal or command prompt (do not close the previous terminal/command prompt), navigate to the 'backend' folder using the `cd` command.
-5. Execute the following command: `npm run start:dev`. This command will start the Nest.js server on port 3000. Keep this terminal/command prompt open.
-6. Open another terminal or command prompt (do not close the window in which you ran the previous command), navigate to the 'frontend' folder.
-7. Execute the following command: `npm run dev`. This command will start the React development server on port 4000. Keep this terminal/command prompt open.
-8. Open a web browser of your choice and type in the URL: `localhost:4000`.
-9. The app should now be running, and you can start adding your favorite movies to the list.
+3. Install some packages by executing the following commands: `npm install json-server` and `npm install --save @nestjs/common`.
+4. While still in 'backend' folder, execute the following command: `npm run json-server`. This command will start the local database on port 5000. Keep this terminal/command prompt open.
+5. Open another terminal or command prompt (do not close the previous terminal/command prompt), navigate to the 'backend' folder using the `cd` command.
+6. Execute the following command: `npm run start:dev`. This command will start the Nest.js server on port 3000. Keep this terminal/command prompt open.
+7. Open another terminal or command prompt (do not close the window in which you ran the previous command), navigate to the 'frontend' folder.
+8. Install some packages by executing the following command: `npm install`.
+9. While still in 'frontend' folder, execute the following command: `npm run dev`. This command will start the React development server on port 4000. Keep this terminal/command prompt open.
+10. Open a web browser of your choice and type in the URL: `localhost:4000`.
+11. The app should now be running, and you can start adding your favorite movies to the list.
 
 **Note:**
 
