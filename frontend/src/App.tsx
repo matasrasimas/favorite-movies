@@ -3,6 +3,7 @@ import {Routes, Route, useNavigate} from 'react-router-dom';
 import {User as UserType} from './types/User';
 import Movies from './components/Movies';
 import Login from './components/Login';
+import NotFound from './components/NotFound';
 import Register from './components/Register';
 import CreateMovie from './components/CreateMovie';
 
@@ -43,6 +44,7 @@ function App() {
           <Route path='/movies/create' element={<CreateMovie/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
 
       </AuthContext.Provider>

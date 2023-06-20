@@ -1,9 +1,11 @@
+
+.primary-header {
+    @include header-style(black, 2.5em);
+}
+
 .main-movies-cnt {
     @include flexbox-style(column, center, 2em);
 
-    .primary-header {
-        @include header-style(black, 2.5em);
-    }
 
     &-options {
         @include flexbox-style(row, space-between);
