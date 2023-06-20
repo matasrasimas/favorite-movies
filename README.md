@@ -1,5 +1,3 @@
-Certainly! Here's the updated README.md file with the additional note:
-
 # Favorite Movies
 
 A simple web application that allows you to create a list of your favorite movies.
