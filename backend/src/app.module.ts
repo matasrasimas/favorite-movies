@@ -14,7 +14,7 @@ import { AuthModule } from './auth/auth.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'SteveHarvey',
+      password: 'root' /* Change this value with your own local MYSQL password */,
       database: 'mydb',
       entities: [User, Movie],
       synchronize: true,
