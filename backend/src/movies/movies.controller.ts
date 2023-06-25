@@ -1,7 +1,7 @@
-import {Body, Controller, Delete, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Query} from '@nestjs/common';
 import { MoviesService } from './movies.service';
-import { Movie } from './interfaces/movie.interface';
 import { CreateMovieDto } from './dtos/create-movie.dto';
+import { Movie } from 'src/entities/movie.entity';
 
 @Controller('movies')
 export class MoviesController {
@@ -13,26 +13,22 @@ export class MoviesController {
     }
 
     @Get(':id')
-    async findById(@Param('id') id: string): Promise<Movie> {
+    async findById(@Param('id') id: number): Promise<Movie> {
         return this.moviesService.findById(id);
     }
 
-    @Get('user/:user_id')
-    async findByUserId(@Param('user_id') user_id: string): Promise<Movie[]> {
+    @Get('user/:id')
+    async findByUserId(@Param('id') user_id: number): Promise<Movie[]> {
         return this.moviesService.findByUserId(user_id);
     }
 
     @Post()
     async create(@Body() createMovieDto: CreateMovieDto): Promise<Movie> {
-        const movie: Movie = {
-            id: '', // json-server will generate the ID
-            ...createMovieDto,
-        };
-        return this.moviesService.create(movie);
+        return this.moviesService.create(createMovieDto);
     }
 
     @Delete(':id')
-    async delete(@Param('id') id: string): Promise<Movie> {
+    async delete(@Param('id') id: number): Promise<void> {
         return this.moviesService.delete(id);
     }
 }

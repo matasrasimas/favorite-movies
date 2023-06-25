@@ -75,7 +75,7 @@ const Login = () => {
     return true;
   }
 
-  const validateForm = (): boolean => {
+  const validateForm = async () => {
 
      let errorFound = false;
      
@@ -98,9 +98,15 @@ const Login = () => {
        return false;
      }
 
-     if(userFromDb.password !== password) {
-       setMainError('Incorrect password!');
-       return false;
+     try {
+        const response = await axios.get(`http://localhost:3000/auth?username=${username}&password=${password}`)
+        if(!response.data) {
+          setMainError('Incorrect password!');
+          return false;
+        }
+
+     } catch(error) {
+      console.log('An error ocurred while logging in: ', error);
      }
 
      setMainError(null);
@@ -113,7 +119,7 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if(validateForm()) {
+    if(await validateForm()) {
       console.log('success!');
       navigate('/');
     }

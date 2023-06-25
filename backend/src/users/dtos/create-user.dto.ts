@@ -2,6 +2,7 @@ import { IsString, IsEmail, IsNotEmpty, MinLength, MaxLength, Matches } from 'cl
 
 export class CreateUserDto {
 
+
     @IsString()
     @IsNotEmpty()
     @MinLength(3)

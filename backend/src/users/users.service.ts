@@ -1,33 +1,34 @@
 import {Injectable} from '@nestjs/common';
-import { User } from './interfaces/user.interface';
-import axios from 'axios';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from 'src/entities/user.entity';
+import { Repository } from 'typeorm';
+import { CreateUserDto } from './dtos/create-user.dto';
 
 @Injectable()
 export class UsersService {
-    private readonly jsonServerUrl = 'http://localhost:5000/users';
+    
+    constructor(
+        @InjectRepository(User) private usersRepository : Repository<User>) {}
+
 
     async findAll(): Promise<User[]> {
-        try {
-            const response = await axios.get<User[]>(this.jsonServerUrl);
-            return response.data;
-        } catch(error) {
-            console.log('Error occurred while retrieving users: ', error.message);
-            throw new Error('Failed to retrieve users');
-        }
+        return await this.usersRepository.find();
     }
 
-    async FindById(id: string): Promise<User> {
-        const response = await axios.get<User>(`${this.jsonServerUrl}/${id}`);
-        return response.data;
+    async findById(id: number): Promise<User | null> {
+        return await this.usersRepository.findOneBy({id});
     }
 
-    async create(user: User): Promise<User> {
-        const response = await axios.post<User>(this.jsonServerUrl, user);
-        return response.data;
+    async findByName(name: string): Promise<User | null> {
+        return await this.usersRepository.findOne({where: {name}})
     }
 
-    async delete(id: string): Promise<User> {
-        const response = await axios.delete<User>(`${this.jsonServerUrl}/${id}`);
-        return response.data;
+    async create(createUserDto: CreateUserDto): Promise<User> {
+        const user = await this.usersRepository.create(createUserDto);
+        return this.usersRepository.save(user);
+    }
+
+    async delete(id: number): Promise<void> {
+        await this.usersRepository.delete(id);
     }
 }
