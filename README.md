@@ -12,18 +12,19 @@ A simple web application that allows you to create a list of your favorite movie
 
 ### Backend
 
-- Node.js (Nest.js)
+- Nest.js
+- MySQL
 
-## Getting Started
+## Running the App Locally
 
 To run the app on your local machine, follow these steps:
 
 1. Clone the repository (download app) to your local machine.
-2. Open the terminal or command line, navigate to the 'backend' folder using the `cd` (change directory) command.
-3. Install some packages by executing the following commands: `npm install json-server` and `npm install --save @nestjs/common`.
-4. While still in 'backend' folder, execute the following command: `npm run json-server`. This command will start the local database on port 5000. Keep this terminal/command prompt open.
-5. Open another terminal or command prompt (do not close the previous terminal/command prompt), navigate to the 'backend' folder using the `cd` command.
-6. Execute the following command: `npm run start:dev`. This command will start the Nest.js server on port 3000. Keep this terminal/command prompt open.
+2. In your local MySQL system, create new database and name it `mydb`.
+3. Locate the file `app.module.ts` in the `backend/src` folder. Open it and find the line that contains the comment "Change this value with your own local MYSQL password". Modify the value 'root' in the line `password:'root'` to match your local MYSQL database password. For example, if your local MYSQL database password is 'password123', change it to `password:'password123'`.
+4. Open the terminal or command line, navigate to the 'backend' folder using the `cd` (change directory) command.
+5. Install '@nestjs/common' library by executing the following command: `npm install @nestjs/common`.
+6. While still in 'backend' folder, execute the following command: `npm run start:dev`. This command will start the Nest.js server on port 3000. Keep this terminal/command prompt open.
 7. Open another terminal or command prompt (do not close the window in which you ran the previous command), navigate to the 'frontend' folder.
 8. Install some packages by executing the following command: `npm install`.
 9. While still in 'frontend' folder, execute the following command: `npm run dev`. This command will start the React development server on port 4000. Keep this terminal/command prompt open.
@@ -32,8 +33,7 @@ To run the app on your local machine, follow these steps:
 
 **Note:**
 
-- Node.js is required to run this project. Ensure that you have Node.js installed on your machine before proceeding.
-- Make sure to keep the three terminal/command prompt windows open while running the app locally. If you encounter any issues, double-check that the necessary dependencies are installed and that the ports specified are not in use by other applications on your machine.
+- Before proceeding with the instructions, please ensure that Node.js and MySQL are installed on your machine. If you haven't installed them yet, please install Node.js from nodejs.org and MySQL from mysql.com before continuing with the steps mentioned above.
 
 ## Usage
 
