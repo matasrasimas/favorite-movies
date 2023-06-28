@@ -2,7 +2,7 @@ import { UsersService } from './../users/users.service';
 import {Injectable} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Movie } from 'src/entities/movie.entity';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
 import { CreateMovieDto } from './dtos/create-movie.dto';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class MoviesService {
         return await this.moviesRepository.find();
     }
     
-    async findById(id: number): Promise<Movie> {
+    async findById(id: number): Promise<Movie | null> {
         return await this.moviesRepository.findOneBy({id});
     }
 
@@ -30,6 +30,12 @@ export class MoviesService {
         const movie = await this.moviesRepository.create(createMovieDto);
         movie.user = await this.usersService.findById(createMovieDto.user_id);
         return this.moviesRepository.save(movie);
+    }
+
+    async update(id: number, createMovieDto: CreateMovieDto): Promise<UpdateResult> {
+        const movie = await this.moviesRepository.create(createMovieDto);
+        movie.user = await this.usersService.findById(createMovieDto.user_id);
+        return await this.moviesRepository.update(id, movie);
     }
 
     async delete(id: number): Promise<void> {

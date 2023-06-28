@@ -1,6 +1,7 @@
 import React from 'react';
 import defaultImg from '../assets/default-movie.jpg';
 import {Movie as MovieType} from '../types/Movie';
+import { Link } from 'react-router-dom';
 
 interface MovieProps {
     movie: MovieType;
@@ -24,7 +25,8 @@ const Movie: React.FC<MovieProps> = ({movie, onDelete}) => {
                 <p>{movie.description}</p>
             </div>
 
-            <div className="movie-cnt-del-btn">
+            <div className="movie-cnt-btns">
+                <Link to={`/movies/update/${movie.id}`}>Edit</Link>
                 <button onClick={() => onDelete(movie)}>Delete</button>
             </div>
 

@@ -1,7 +1,8 @@
-import {Body, Controller, Delete, Get, Param, Post, Query} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put, ParseIntPipe} from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dtos/create-movie.dto';
 import { Movie } from 'src/entities/movie.entity';
+import { UpdateResult } from 'typeorm';
 
 @Controller('movies')
 export class MoviesController {
@@ -13,7 +14,7 @@ export class MoviesController {
     }
 
     @Get(':id')
-    async findById(@Param('id') id: number): Promise<Movie> {
+    async findById(@Param('id', ParseIntPipe) id: number): Promise<Movie | null> {
         return this.moviesService.findById(id);
     }
 
@@ -25,6 +26,11 @@ export class MoviesController {
     @Post()
     async create(@Body() createMovieDto: CreateMovieDto): Promise<Movie> {
         return this.moviesService.create(createMovieDto);
+    }
+
+    @Put(':id')
+    async update(@Param('id') id: number, @Body() createMovieDto: CreateMovieDto): Promise<UpdateResult> {
+        return this.moviesService.update(id, createMovieDto);
     }
 
     @Delete(':id')

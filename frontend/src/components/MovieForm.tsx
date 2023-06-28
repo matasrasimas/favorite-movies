@@ -4,11 +4,13 @@ import Navbar from './Navbar';
 import axios from 'axios';
 import {Movie as MovieType} from '../types/Movie';
 import {User as UserType} from '../types/User';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const CreateMovie = () => {
+
+    const {action, id} = useParams();
 
     const {loggedUser} = useContext(AuthContext) as {
       loggedUser: UserType | null;
@@ -16,6 +18,7 @@ const CreateMovie = () => {
     };
 
     const navigate = useNavigate();
+
 
     const [movies, setMovies] = useState<MovieType[]>([]);
 
@@ -35,11 +38,25 @@ const CreateMovie = () => {
 
     useEffect(() => {
       const fetchData = async() => {
-
-
+        
         if(!loggedUser) {
           return; // Do not execute the rest of the code if loggedUser is null
         }
+
+        
+        if(action === 'update' && id !== undefined && !isNaN(+id)) { // Check, if id, passed through URL, is a valid number
+          const response = await axios.get(`http://localhost:3000/movies/${id}`);
+          if(response.data) {
+            setName(response.data.name);
+            setDescription(response.data.description);
+            setImgURL(response.data.img_url);
+          } 
+          else navigate('/not-found');
+        }
+        else if(action !== 'create' || id !== undefined) {
+          navigate('/not-found');
+        }
+
 
         try {
           const response = await axios.get(`http://localhost:3000/movies/user/${loggedUser.id}`);
@@ -61,7 +78,7 @@ const CreateMovie = () => {
          setNameError('Name must contain at least 3 characters!');
        }
 
-       else if(movies.find((movie) => movie.name.toLowerCase() === name.toLowerCase())) {
+       else if(action === 'create' && movies.find((movie) => movie.name.toLowerCase() === name.toLowerCase())) {
          errorFound = true;
          setNameError('Movie with this name already exsits in your list!');
        }
@@ -78,7 +95,7 @@ const CreateMovie = () => {
 
     const validateImgURL = () => {
 
-       const imgURLRegex = /^https?:\/\/.*\.(gif|jpe?g|tiff?|png|webp|bmp)$/i;
+       const imgURLRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/;
 
        if(imgURL.length !== 0 && !imgURLRegex.test(imgURL)) {
           setImgURLError('Invalid image URL address!');
@@ -113,9 +130,11 @@ const CreateMovie = () => {
            };
 
            try {
-            const response = await axios.post('http://localhost:3000/movies', movie);
+            const response = action === 'update' ?
+             await axios.put(`http://localhost:3000/movies/${id}`, movie) :
+             await axios.post('http://localhost:3000/movies', movie);
 
-            if(response.status === 201) {
+            if(response.status === 201 || response.status === 200) {
               console.log('Movie added successfully!');
               setMainError(null);
               navigate('/movies');
@@ -144,7 +163,7 @@ const CreateMovie = () => {
         <div className="form-cnt light">
           <header>
             <h1>
-              Add movie
+              {action === 'create' ? 'Add movie' : 'Edit movie'}
             </h1>
             <Link to='/movies' className="go-back-cnt">
               <FontAwesomeIcon icon={faArrowLeft} className='go-back-cnt-icon'/>
@@ -207,7 +226,7 @@ const CreateMovie = () => {
                 </div>
 
                 <div className="login-btn-cnt light">
-                    <button>Add</button>
+                    <button>{action === 'update' ? 'Update' : 'Add'}</button>
                 </div>
 
             </div>

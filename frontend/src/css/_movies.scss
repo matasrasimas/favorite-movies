@@ -87,12 +87,23 @@
                 font-size:12px;          
             }
 
-            &-del-btn {
+            &-btns {
                 display:flex;
-                justify-content:center;
-                button {
-                    @include button-style(#a30000);
+                justify-content: center;
+                gap:2em;
+                :first-child {
+                    @include button-style(black);
+                    display:flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-decoration: none;;
+                    width:40%;
                 }
+                :last-child {
+                    @include button-style(#a30000);
+                    width:40%;
+                }
+
             }
 
             &:hover {

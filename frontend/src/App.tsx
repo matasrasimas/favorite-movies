@@ -5,7 +5,7 @@ import Movies from './components/Movies';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
 import Register from './components/Register';
-import CreateMovie from './components/CreateMovie';
+import MovieForm from './components/MovieForm';
 
 export const AuthContext = createContext<{
   loggedUser: UserType | null;
@@ -41,7 +41,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Movies/>}/>
           <Route path='/movies' element={<Movies/>}/>
-          <Route path='/movies/create' element={<CreateMovie/>}/>
+          <Route path='/movies/:action/:id?' element={<MovieForm/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='*' element={<NotFound/>}/>
